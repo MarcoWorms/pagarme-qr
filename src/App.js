@@ -3,6 +3,7 @@ import NodeRSA from 'node-rsa'
 import axios from 'axios'
 import QRCode from 'qrcode.react'
 import './App.css'
+import logo from './logo.svg'
 
 import { keys } from './keys'
 
@@ -47,8 +48,9 @@ class App extends Component {
 				card_holder_name: 'abc',
 				card_expiration_date: '1225',
 				card_cvv: '123',
-        QRCodeText: '',
 			},
+      QRCodeText: '',
+      error: 'H',
 		}
   }
   setCard (stateIndex, event) {
@@ -88,15 +90,33 @@ class App extends Component {
             onChange={this.setCard.bind(this, 'card_cvv')}
             defaultValue={this.state.card.card_cvv}
           />
+          <input
+            onChange={e => this.setState({ error: e.target.value })}
+            defaultValue={this.state.error}
+          />
           <button onClick={this.generateCardHashQR.bind(this)}>
             Gerar QR Code
           </button>
         </div>
         {this.state.QRCodeText &&
-          <QRCode
-            value={this.state.QRCodeText}
-            size={Math.min(window.innerWidth*0.8, window.innerHeight*0.8)}
-          />
+            <div style={{position: 'relative'}}>
+              <QRCode
+                value={this.state.QRCodeText}
+                size={Math.min(window.innerWidth*0.8, window.innerHeight*0.8)}
+                level={this.state.error}
+                fgColor="#f26f21"
+              />
+              <img src={logo} style={{
+                position: 'absolute',
+                width: '30%',
+                height: '30%',
+                left: '35%',
+                top: '35%',
+                backgroundColor: 'white',
+                padding: 5,
+                borderRadius: 999
+              }}/>
+            </div>
         }
       </div>
     )
