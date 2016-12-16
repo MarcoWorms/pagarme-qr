@@ -108,12 +108,12 @@ class App extends Component {
               />
               <img src={logo} style={{
                 position: 'absolute',
-                width: '30%',
-                height: '30%',
+                width: '28%',
+                height: '28%',
                 left: '35%',
                 top: '35%',
                 backgroundColor: 'white',
-                padding: 5,
+                padding: 7,
                 borderRadius: 999
               }}/>
             </div>
