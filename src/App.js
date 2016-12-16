@@ -50,7 +50,7 @@ class App extends Component {
 				card_cvv: '123',
 			},
       QRCodeText: '',
-      error: 'H',
+      error: 'M',
 		}
   }
   setCard (stateIndex, event) {
@@ -59,6 +59,9 @@ class App extends Component {
 				[stateIndex]: event.target.value,
 			},
 		})
+  }
+  componentDidMount() {
+    this.generateCardHashQR()
   }
   generateCardHashQR () {
 		const queryString = buildCardHashQueryString(this.state.card)
@@ -108,8 +111,8 @@ class App extends Component {
               />
               <img src={logo} style={{
                 position: 'absolute',
-                width: '28%',
-                height: '28%',
+                width: '27%',
+                height: '27%',
                 left: '35%',
                 top: '35%',
                 backgroundColor: 'white',
